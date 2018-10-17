@@ -14,8 +14,8 @@ def main():
 
     profile = request_profile(summoner_name)
 
-    print "Summoner name: ", profile['name']
-    print "Summoner level: ", profile['summonerLevel']
+    for key in profile:
+        print key, ": ", profile[key]
 
 if __name__ == "__main__":
     main()
