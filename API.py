@@ -1,18 +1,21 @@
-from riotwatcher import RiotWatcher
+import json
 
+import requests
 
-#my api key, XXXXX for privacy
-watcher = RiotWatcher('RGAPI-9e97549d-1ab3-4f7a-8f45-010e2d3760e2')
+import key
 
-#user region
-my_region = 'euw1'
+def request_profile(name):
+    URL = "https://euw1.api.riotgames.com/lol/summoner/v3/summoners/by-name/{}?api_key={}".format(name,key.APIkey)
+    profile = requests.get(URL)
+    return profile.json()
 
-summoner_name = raw_input('Enter your summoner name:')
+def main():
+    summoner_name = raw_input('Please enter summoner name: ')
 
-#
-try:
-    me = watcher.summoner.by_name(my_region,summoner_name)
+    profile = request_profile(summoner_name)
 
-    print(me)
-except:
-    print('An error occured!')
+    print "Summoner name: ", profile['name']
+    print "Summoner level: ", profile['summonerLevel']
+
+if __name__ == "__main__":
+    main()
