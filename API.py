@@ -61,7 +61,11 @@ def main():
 
         for key in range(0,len(newest_match["participantIdentities"])):
             if newest_match["participantIdentities"][key]["player"]["summonerName"].lower().replace(" ","") == summoner_name.lower().replace(" ",""):
-                print newest_match["participantIdentities"][key]["participantId"]
+                summoners_participant_Id = newest_match["participantIdentities"][key]["participantId"]
+
+        for key in range(0,len(newest_match["participants"])):
+            if newest_match["participants"][key]["participantId"] == summoners_participant_Id:
+                print "You got ", newest_match["participants"][key]["stats"]["kills"], " kills in your most recent game."
 
 
     except Exception as exc:
