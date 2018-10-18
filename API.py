@@ -60,7 +60,7 @@ def main():
         print
 
         for key in range(0,len(newest_match["participantIdentities"])):
-            if newest_match["participantIdentities"][key]["player"]["summonerName"].lower() == summoner_name.lower():
+            if newest_match["participantIdentities"][key]["player"]["summonerName"].lower().replace(" ","") == summoner_name.lower().replace(" ",""):
                 print newest_match["participantIdentities"][key]["participantId"]
 
 
