@@ -9,7 +9,7 @@ def request_profile(name):
     profile = requests.get(URL)
 
     if profile.json().keys()[0] == 'status':
-        raise Exception("Error code:", profile.json()['status']['status_code'])
+        raise Exception("Error code:", profile.json()['status']['status_code'], name)
 
     return profile.json()
 
@@ -25,7 +25,7 @@ def request_match_list(name):
     match_list = requests.get(URL)
 
     if match_list.json().keys()[0] == 'status':
-        raise Exception("Error code:", match_list.json()['status']['status_code'])
+        raise Exception("Error code:", match_list.json()['status']['status_code'], name)
 
     return match_list.json()
 
@@ -37,6 +37,6 @@ def request_match(match_id):
     match = requests.get(URL)
 
     if match.json().keys()[0] == 'status':
-        raise Exception("Error code:", match.json()['status']['status_code'])
+        raise Exception("Error code:", match.json()['status']['status_code'], match_id)
 
     return match.json()

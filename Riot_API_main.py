@@ -16,7 +16,7 @@ def print_scores(array):
 #kills/deaths/assists/cs/damagedealt to champions
 def average_score(summoner_name):
     #how many games to average over
-    num_of_games = 2
+    num_of_games = 5
     ####
     Scores_array = np.zeros((num_of_games, 5))
 
@@ -57,7 +57,7 @@ def average_score(summoner_name):
 def compare_teams(summoner_name):
 
     #how many games to look at for the target summoner
-    matches_of_summoner = 2
+    matches_of_summoner = 5
     ####
 
     team_scores_array = np.zeros((0,5))
