@@ -7,6 +7,21 @@ import API_requests
 import keras
 
 
+def compare_teams(summoners_name):
+    try:
+        profile = API_requests.request_profile(summoner_name)
+
+    except Exception as exc:
+        print exc.args[0], exc.args[1]
+
+    matchlist = API_requests.request_match_list(summoner_name)
+
+    for match_num in range(0,20):
+        match_id = matchlist["matches"][0]["gameId"]
+
+
+
+
 def main():
     summoner_name = raw_input('Please enter summoner name: ')
 
