@@ -5,9 +5,7 @@ import key
 #function to return the dictionary of the players profile
 def request_profile(name):
     time.sleep(1)
-    print "before"
     URL = u"https://euw1.api.riotgames.com/lol/summoner/v3/summoners/by-name/{}?api_key={}".format(name,key.APIkey)
-    print "after"
     profile = requests.get(URL)
 
     if profile.json().keys()[0] == 'status':
