@@ -4,9 +4,10 @@ import key
 
 #function to return the dictionary of the players profile
 def request_profile(name):
-    time.sleep(0.85)
-    URL = "https://euw1.api.riotgames.com/lol/summoner/v3/summoners/by-name/{}?api_key={}".format(name,key.APIkey)
-
+    time.sleep(1)
+    print "before"
+    URL = u"https://euw1.api.riotgames.com/lol/summoner/v3/summoners/by-name/{}?api_key={}".format(name,key.APIkey)
+    print "after"
     profile = requests.get(URL)
 
     if profile.json().keys()[0] == 'status':
@@ -16,7 +17,7 @@ def request_profile(name):
 
 #function to return the dictionary of the players match list
 def request_match_list(name):
-    time.sleep(0.85)
+    time.sleep(1)
     requested_profile = request_profile(name)
 
     accountid = requested_profile['accountId']
@@ -32,7 +33,7 @@ def request_match_list(name):
 
 #returns match data from the match id
 def request_match(match_id):
-    time.sleep(0.85)
+    time.sleep(1)
     URL = "https://euw1.api.riotgames.com/lol/match/v3/matches/{}?api_key={}".format(match_id,key.APIkey)
 
     match = requests.get(URL)
