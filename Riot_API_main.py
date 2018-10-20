@@ -14,19 +14,22 @@ def print_scores(array):
 
 
 #kills/deaths/assists/cs/damagedealt to champions
-def average_score(summoner_name):
+def average_score(summoner_id):
     #how many games to average over
     num_of_games = 5
     ####
     Scores_array = np.zeros((num_of_games, 5))
 
+    matchlist = API_requests.request_match_list(summoner_id)
+
     try:
-        profile = API_requests.request_profile(summoner_name)
+        profile = API_requests.request_profile_id(summoner_id)
 
     except Exception as exc:
         print exc.args[0], exc.args[1]
 
-    matchlist = API_requests.request_match_list(summoner_name)
+    summoner_name = profile["name"]
+
 
     #for the last 10 games
     for match_num in range(0,num_of_games):
@@ -64,12 +67,16 @@ def compare_teams(summoner_name):
     oppenent_scores_array = np.zeros((0,5))
 
     try:
-        profile = API_requests.request_profile(summoner_name)
+        profile = API_requests.request_profile_name(summoner_name)
 
     except Exception as exc:
         print exc.args[0], exc.args[1]
 
-    matchlist = API_requests.request_match_list(summoner_name)
+
+
+    summoner_id = profile["accountId"]
+
+    matchlist = API_requests.request_match_list(summoner_id)
 
     for match_num in range(0,matches_of_summoner):
         print "Looking at match:", match_num
@@ -97,11 +104,11 @@ def compare_teams(summoner_name):
 
                         if match["participants"][stats_key]["participantId"] == player_id:
                             if match["participants"][stats_key]["teamId"] == summoner_teamid:
-                                X = average_score(match["participantIdentities"][stats_key]["player"]["summonerName"])
+                                X = average_score(match["participantIdentities"][stats_key]["player"]["accountId"])
                                 X1 = np.expand_dims(X,axis = 0)
                                 team_scores_array = np.concatenate((team_scores_array, X1))
                             else:
-                                X = average_score(match["participantIdentities"][stats_key]["player"]["summonerName"])
+                                X = average_score(match["participantIdentities"][stats_key]["player"]["accountId"])
                                 X1 = np.expand_dims(X,axis = 0)
                                 oppenent_scores_array = np.concatenate((oppenent_scores_array, X1))
 
