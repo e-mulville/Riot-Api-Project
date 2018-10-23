@@ -21,7 +21,7 @@ def save_match_data(summoner_name):
     except Exception as exc:
         print exc.args[0], exc.args[1]
 
-    temp = 0
+
 
     summoner_id = profile["accountId"]
 
@@ -30,7 +30,8 @@ def save_match_data(summoner_name):
     for match_num in matchlist["matches"]:
         match = API_requests.request_match(match_num["gameId"])
 
-        #all match data on a player printed
+        #all match data on a player printed 126 fields
+
 
         print match["participants"][0]["spell1Id"]
         print match["participants"][0]["spell2Id"]
