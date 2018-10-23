@@ -101,7 +101,7 @@ def compare_teams(summoner_name):
                 if player_id != summoner_participant_id:
 
                     for stats_key in range(0,len(match["participants"])):
-
+                        #get the right player's stats and check what team they are on
                         if match["participants"][stats_key]["participantId"] == player_id:
                             if match["participants"][stats_key]["teamId"] == summoner_teamid:
                                 X = average_score(match["participantIdentities"][stats_key]["player"]["accountId"])
@@ -125,6 +125,6 @@ def main():
     compare_teams(summoner_name)
 
 
-
+#saftey
 if __name__ == "__main__":
     main()
