@@ -10,16 +10,16 @@ def print_scores(array):
 
 
 #kills/deaths/assists/cs/damagedealt to champions for one summoner
-def average_score(summoner_id):
+def average_score(account_id):
     #how many games to average over
     num_of_games = 5
     ####
     Scores_array = np.zeros((num_of_games, 5))
 
-    matchlist = API_requests.request_match_list(summoner_id)
+    matchlist = API_requests.request_match_list(account_id)
 
     try:
-        profile = API_requests.request_profile_id(summoner_id)
+        profile = API_requests.request_profile_id(account_id)
 
     except Exception as exc:
         print exc.args[0], exc.args[1]
