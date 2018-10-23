@@ -46,7 +46,7 @@ def save_match_data(summoner_name):
                 for deltaskey in match["participants"][0]["timeline"][key]:
                     print match["participants"][0]["timeline"][key][deltaskey]
             else:
-                 match["participants"][0]["timeline"][key]
+                 print match["participants"][0]["timeline"][key]
 
 
 
